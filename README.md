@@ -1,6 +1,6 @@
 # 📚 API de Gestión de Estudiantes y Cursos
 
-Este proyecto es una API REST creada con **Spring Boot** que permite gestionar estudiantes y cursos. Incluye funcionalidades de autenticación mediante **JWT**, validaciones, manejo de errores personalizado, y separación clara mediante **DTOs** y capas de servicio.
+Este proyecto es una API REST creada con **Spring Boot** que permite gestionar estudiantes y cursos. Incluye funcionalidades de autenticación mediante **JWT**, validaciones, manejo de errores personalizado, separación clara mediante **DTOs** y capas de servicio y una documentación interactiva gracias a **Swagger**.
 
 ---
 
@@ -15,6 +15,7 @@ Este proyecto es una API REST creada con **Spring Boot** que permite gestionar e
 - Maven
 - Postman (para pruebas)
 - Lombok
+- Swagger UI
 
 ---
 
@@ -86,6 +87,37 @@ Este proyecto es una API REST creada con **Spring Boot** que permite gestionar e
 Incluye una colección de Postman lista para importar en la carpeta `/postman`.
 
 ---
+
+
+## Documentación de la API
+
+La documentación interactiva está disponible gracias a Swagger:
+
+- http://localhost:8080/swagger-ui/index.html
+
+---
+
+## Autenticación con JWT en Swagger
+
+Para probar los endpoints protegidos desde Swagger:
+
+1. Registrarse y autenticarse en el endpoints POST /auth/register y /auth/login con tus credenciales.
+```properties
+   {
+    "username": "admin",
+    "password": "admin123"
+    }
+```
+2. Copiar el token JWT del cuerpo de la respuesta.
+3. Hacer clic en el botón Authorize 🔐 en la parte superior derecha de Swagger UI.
+4. En el campo que aparece, ingresar el token:
+```properties
+   eyJhbGciOiJIUzI1NiIsInR5cCI6...
+```
+5. Ahora podés probar cualquier endpoint protegido.
+
+---
+
 
 ## Autor
 

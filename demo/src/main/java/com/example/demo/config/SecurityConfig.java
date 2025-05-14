@@ -35,10 +35,16 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll() // endpoints públicos
-                        .anyRequest().authenticated() // todo lo demás requiere login
+                        .requestMatchers("/auth/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**",
+                                "/v3/api-docs",
+                                "/swagger-resources/**",
+                                "/webjars/**").permitAll() // endpoints públicos
+                        .anyRequest().authenticated() //todo lo demás requiere login
                 )
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) // ⬅️ Registramos nuestro filtro
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 }

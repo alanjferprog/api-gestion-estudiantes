@@ -6,6 +6,8 @@ import com.example.demo.model.Usuario;
 import com.example.demo.repository.UsuarioRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Autorizaciones", description = "")
 public class AuthController {
 
     private final UsuarioService usuarioService;
@@ -33,11 +36,13 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Operation(summary = "Registro en la base de datos")
     @PostMapping("/register")
     public Usuario registrar(@RequestBody RegistroRequest request) {
         return usuarioService.registrarUsuario(request);
     }
 
+    @Operation(summary = "Login en la base de datos")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         Optional<Usuario> optionalUsuario = usuarioRepository.findByUsername(request.getUsername());
